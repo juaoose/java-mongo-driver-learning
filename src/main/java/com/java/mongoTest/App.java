@@ -43,7 +43,7 @@ public class App{
     	database = client.getDatabase(DB_NAME);
     	collection = database.getCollection(DB_COLLECTION);    	
     	//TODO call whatever
-    	simpleReplaceDocumentNoEntity();
+    	
     }
     
     //----------------------------------
@@ -117,6 +117,45 @@ public class App{
     	Document update = new Document("$set", insertionObject);
     	Document query = new Document("test_name", "someName");
     	collection.updateOne(query, update);
+    }
+    
+    /**
+     * $set
+     * Updates the array
+     */
+    public static void setUpdateArrayNoEntity(){
+    	List<Document> props = new ArrayList<Document>();
+    	Document prop = new Document("name", "prop1")
+    			.append("value", "hello");
+    	Document prop1 = new Document("name", "prop2")
+    			.append("value", "hello1");
+    	props.add(prop);
+    	props.add(prop1);
+    	Document d = new Document()
+    			.append("test_properties", props);
+    	
+    	Document update = new Document("$set", d);
+    	Document query = new Document("test_name", "name1");
+    	collection.updateOne(query, update);
+    }
+    
+    /**
+     * Adds multiple objects to an array within an object
+     * Doesn't add duplicates(if you have all the keys and values)
+     */
+    public static void addToArrayOfDocsWithoutDupes(){
+    	//Existing prop
+    	Document propUpdate = new Document ("name", "prop1")
+    			.append("value", "hello");
+    	//new Prop
+    	Document propUpdate1 = new Document ("name", "prop3")
+    			.append("value", "helloo");
+    	List<Document> toAdd = new ArrayList<Document>();
+    	toAdd.add(propUpdate);
+    	toAdd.add(propUpdate1);
+    	Document arrayUpdate = new Document("test_properties", new Document("$each", toAdd));
+    	Document addToSet = new Document("$addToSet", arrayUpdate);
+    	collection.updateOne(new Document("test_name", "name1"), addToSet);
     }
     
     //----------------------------------
