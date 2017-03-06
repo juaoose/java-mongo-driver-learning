@@ -13,6 +13,14 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 /**
  * This is a very simple application to learn and test most of the functionality available through the MongoDB Java Driver.
+ * The object stored in the db looks like this:
+ * {
+ * 		"test_name": "name",
+ * 		"test_properties: [
+ * 							{ "name": "p1",
+ * 							  "value": "v1" }
+ * 						  ]
+ * }
  */
 public class App{
 	
