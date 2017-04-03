@@ -8,14 +8,14 @@ These are my notes for the MongoDB University course: MongoDB for Java Developer
     * [Creation](#creation)
     * [Reading](#reading)
         * [Retrieve using params](#retrieve-using-params)
-        * [Retrieve nested documents](#retrieve-nested-documents)
+        * [Retrieve nested document](#retrieve-nested-document)
         * [Retrieve based on array equality](#retrieve-based-on-array-equality)
         * [Cursors and projections](#cursors-and-projections)
         * [Query Operators](#query-operators)
             * [Comparison Operators](#comparison-operators)
             * [Element Operators](#element-operators)
             * [Logical Operators](#logical-operators)
-            * [Regex Operators](#regex-operators)
+            * [Regex Operators](#regular-expression-operators)
     * [Updating](#updating)
     
 
@@ -99,10 +99,11 @@ Projections are used to reduce network overhead and processing requirement by li
 db.people.find({ name: "juan"}, { age: 1}).pretty()
 ```
 
-### [Query operators](https://docs.mongodb.com/manual/reference/operator/)
+### Query operators
+[See](https://docs.mongodb.com/manual/reference/operator/)
 
-#### [Comparison operators](https://docs.mongodb.com/manual/reference/operator/query-comparison/)
-Check mongo documentation to see all of the operators.
+#### Comparison operators
+[Check mongo documentation to see all of the operators.](https://docs.mongodb.com/manual/reference/operator/query-comparison/)
 
 * **$gt** and **$gte:** Greater than
 ```javascript
@@ -127,8 +128,8 @@ db.people.find({ age: { $gte: 22, $lte: 25 } }).pretty()
  db.people.find({ hobbies: { $in: ["bikes", "cars"] } }).pretty()
  ```
  
- #### [Element operators](https://docs.mongodb.com/manual/reference/operator/query/#element)
- 
+#### Element operators
+ [See](https://docs.mongodb.com/manual/reference/operator/query/#element)
 * **$exists:** Field exists or not
  ```javascript
  db.people.find({ "body.lenght": { $exists: true } }).pretty()
@@ -139,8 +140,8 @@ db.people.find({ age: { $gte: 22, $lte: 25 } }).pretty()
   db.people.find({ "_id": { $type: "string" } }).pretty()
  ```
 
- #### [Logical operators](https://docs.mongodb.com/manual/reference/operator/query/#logical)
- 
+#### Logical operators
+[See](https://docs.mongodb.com/manual/reference/operator/query/#logical)
  * **$or:**
   ```javascript
   db.people.find({ $or: [ { age: { $gte: 22 }}, { name: { $eq: "juan" }} ] }).pretty()
@@ -150,15 +151,16 @@ db.people.find({ age: { $gte: 22, $lte: 25 } }).pretty()
    //You can find the types in the docs
    db.people.find({ $and: [ { age: { $gte: 22 }}, { name: { $eq: "juan" }} ] }).pretty()
   ```
- #### [Regex operators](https://docs.mongodb.com/manual/reference/operator/query/#evaluation)
- 
+  
+#### Regular Expression operators
+[See](https://docs.mongodb.com/manual/reference/operator/query/#evaluation)
   * **$regex:** 
    ```javascript
     db.people.find({ name: { $regex: /^.*/ } }).pretty()
    ```
   
-#### [Array operators](https://docs.mongodb.com/manual/reference/operator/query-array/)
-
+#### Array operators
+[See](https://docs.mongodb.com/manual/reference/operator/query-array/)
   * **$all:** 
    ```javascript
     db.people.find({ hobbies: { $all: ["bikes", "soccer", "games"] } }).pretty()
@@ -173,6 +175,7 @@ db.people.find({ age: { $gte: 22, $lte: 25 } }).pretty()
    ```javascript
    //TODO    
    ```
+   
 ## Updating
  * updateOne
  ```javascript
