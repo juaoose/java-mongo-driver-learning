@@ -60,19 +60,25 @@ public class Week2 {
 	//////////////////////////////////////////
 
 	public static void testInsertOne(MongoCollection<Document> collection) {
-		Document person = new Document(NAME, "juan").append(LAST_NAME, "rodriguez").append(AGE, 22)
-				.append(BODY, new Document(BODY_LENGTH, 165).append(BODY_WIDTH, 60))
+		Document person = new Document(NAME, "juan")
+				.append(AGE, 22)
+				.append(BODY, new Document(BODY_LENGTH, 165)
+						.append(BODY_WIDTH, 60))
 				.append(HOBBIES, Arrays.asList("Videogames", "Tennis", "Cars", "Bikes"));
 
 		collection.insertOne(person);
 	}
 
 	public static void testInsertMany(MongoCollection<Document> collection) {
-		Document lina = new Document(NAME, "lina").append(LAST_NAME, "rodriguez").append(AGE, 25)
-				.append(BODY, new Document(BODY_LENGTH, 165).append(BODY_WIDTH, 60))
+		Document lina = new Document(NAME, "lina").append(LAST_NAME, "rodriguez")
+				.append(AGE, 25)
+				.append(BODY, new Document(BODY_LENGTH, 165)
+						.append(BODY_WIDTH, 60))
 				.append(HOBBIES, Arrays.asList("Design", "Tennis", "Art", "Bikes"));
-		Document luis = new Document(NAME, "luis").append(LAST_NAME, "sanchez").append(AGE, 33)
-				.append(BODY, new Document(BODY_LENGTH, 175).append(BODY_WIDTH, 70))
+		Document luis = new Document(NAME, "luis")
+				.append(AGE, 33)
+				.append(BODY, new Document(BODY_LENGTH, 175)
+						.append(BODY_WIDTH, 70))
 				.append(HOBBIES, Arrays.asList("Guns", "Soccer", "Girls", "Party"));
 
 		collection.insertMany(Arrays.asList(lina, luis));

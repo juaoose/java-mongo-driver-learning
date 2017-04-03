@@ -30,22 +30,16 @@ You can insert with insertOne({<document>}), insertMany([{<doc1>}, {<doc2>}],{<o
 
 ```javascript
 //Insert one
-db.people.insertOne({ _id: "abc", name: "juan", age: 22, body: { lenght: 10, widht: 10 }, 
-                    hobbies: ["soccer", "games", "bikes"]})
+db.people.insertOne({ _id: "abc", name: "juan", age: 22, body: { length: 165, width: 60 }, 
+                    hobbies: ["Videogames", "Tennis", "Cars", "Bikes"]})
 //Insert many
-db.people.insertMany([{ _id: "abcd", name: "lina", age: 22, body: { lenght: 15, widht: 10 }, 
-                        hobbies: ["design", "bikes"]}, 
-                        { _id: "abcde", name: "luis", age: 26, body: { lenght: 25, widht: 11 }, 
-                         hobbies: ["cars", "bikes"]}])
+db.people.insertMany([{ _id: "abcd", name: "lina", age: 25, body: { length: 165, width: 60 }, 
+                        hobbies: ["Design", "Tennis", "Art", "Bikes"]}, 
+                        { _id: "abcde", name: "luis", age: 33, body: { length: 175, width: 70 }, 
+                         hobbies: ["Guns", "Soccer", "Girls", "Party"]}])
 ```
 
 ## Reading
-
-After that insertion we have:
-
-* `{ _id: "abc", name: "juan", age: 22, body: { lenght: 10, widht: 10 }, hobbies: ["soccer", "games", "bikes"]}`
-* `{ _id: "abcd", name: "lina", age: 22, body: { lenght: 15, widht: 10 }, hobbies: ["design", "bikes"]}`
-* `{ _id: "abcde", name: "luis", age: 26, body: { lenght: 25, widht: 11 }, hobbies: ["cars", "bikes"]}`
 
 ### Retrieve using params
 * Juan with:<br> 
@@ -62,7 +56,7 @@ db.people.find({age: 22}).pretty()
 You need to use quotes and use dot notation.
 * Both with: <br>
 ```javascript
-db.people.find({"body.widht": 10}).pretty()
+db.people.find({"body.width": 10}).pretty()
 ```
 
 ### Retrieve based on array equality
@@ -132,7 +126,7 @@ db.people.find({ age: { $gte: 22, $lte: 25 } }).pretty()
  [See](https://docs.mongodb.com/manual/reference/operator/query/#element)
 * **$exists:** Field exists or not
  ```javascript
- db.people.find({ "body.lenght": { $exists: true } }).pretty()
+ db.people.find({ "body.length": { $exists: true } }).pretty()
  ```
 * **$type:** If a field is of the specified type
  ```javascript
@@ -209,7 +203,7 @@ db.people.find({ age: { $gte: 22, $lte: 25 } }).pretty()
  
  * replaceOne
  ```javascript
- var newDaniel = { name: "daniel", lastname: "rambini", age: 19, hobbies: ["nothing"], body: { lenght: 10, widht: 10 }}
+ var newDaniel = { name: "daniel", lastname: "rambini", age: 19, hobbies: ["nothing"], body: { length: 10, width: 10 }}
  db.people.replaceOne({ name: newDaniel.name }, newDaniel)
  ```
     
