@@ -22,7 +22,7 @@ import com.mongodb.client.MongoDatabase;
  * 						  ]
  * }
  */
-public class App{
+public class MongoTest{
 	
 	private final static String DB_HOST = "localhost";
 	
@@ -31,7 +31,7 @@ public class App{
 	private final static String DB_COLLECTION = "mongo_tests";
 	
 	private final static int DB_PORT = 27017;
-	
+
 	private static ObjectMapper objectMapper;
 	
 	private static MongoClient client;
@@ -40,7 +40,7 @@ public class App{
 	
 	private static MongoCollection<Document> collection;
 	
-	public App(){
+	public MongoTest(){
 		
 	}
 		
@@ -49,7 +49,12 @@ public class App{
     	objectMapper = new ObjectMapper();
     	client = new MongoClient(DB_HOST, DB_PORT);
     	database = client.getDatabase(DB_NAME);
-    	collection = database.getCollection(DB_COLLECTION);    	
+    	collection = database.getCollection(DB_COLLECTION);   
+    	//Clear it everytime
+    	collection.drop();
+    	//Insert
+    	insertDocumentNoEntity();
+    	insertManyDocuments();
     	//TODO call whatever
     	
     }
@@ -171,6 +176,7 @@ public class App{
     //----------------------------------
     
     //TODO
+    
 
 
 }
